@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DisasmUiTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Disasm UI Test" Height="300" Width="400">
+    <StackPanel>
+        <Button Name="simpleList" Content="Simple List"
+                Width="200" Height="50" Margin="8" Click="SimpleList_Click"/>
+        <Button Name="multiColTemplate" Content="Multi-Column Template"
+                Width="200" Height="50" Margin="8" Click="MultiColTemplate_Click"/>
+    </StackPanel>
 </Window>

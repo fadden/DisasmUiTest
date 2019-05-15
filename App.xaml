@@ -4,6 +4,33 @@
              xmlns:local="clr-namespace:DisasmUiTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <FontFamily x:Key="generalMonoFont">Consolas</FontFamily>
+
+            <!--
+            don't center the ListView(GridView) column headers
+            https://stackoverflow.com/questions/44119146/wpf-listview-column-header-alignment
+            -->
+            <Style TargetType="{x:Type GridViewColumnHeader}">
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+            </Style>
+
+            <!-- common header list; uses XPath to get data from XData -->
+            <GridView x:Key="gridColumns" x:Shared="false">
+                <GridViewColumn Header="Offset" DisplayMemberBinding="{Binding XPath=@Offset}"/>
+                <GridViewColumn Header="Addr" DisplayMemberBinding="{Binding XPath=@Addr}"/>
+                <GridViewColumn Header="Bytes" DisplayMemberBinding="{Binding XPath=@Bytes}"/>
+                <GridViewColumn Header="Flags" DisplayMemberBinding="{Binding XPath=@Flags}"/>
+                <GridViewColumn Header="Attr" DisplayMemberBinding="{Binding XPath=@Attr}"/>
+                <GridViewColumn Header="Label" DisplayMemberBinding="{Binding XPath=@Label}"/>
+                <GridViewColumn Header="Opcode" DisplayMemberBinding="{Binding XPath=@Opcode}"/>
+                <GridViewColumn Header="Operand" DisplayMemberBinding="{Binding XPath=@Operand}"/>
+                <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding XPath=@Comment}"/>
+            </GridView>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Data.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -21,5 +21,15 @@ namespace DisasmUiTest {
         public MainWindow() {
             InitializeComponent();
         }
+
+        private void SimpleList_Click(object sender, RoutedEventArgs e) {
+            SimpleListWindow win = new SimpleListWindow();
+            win.Show();
+        }
+
+        private void MultiColTemplate_Click(object sender, RoutedEventArgs e) {
+            MultiColTemplateWindow win = new MultiColTemplateWindow();
+            win.Show();
+        }
     }
 }

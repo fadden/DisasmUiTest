@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DisasmUiTest">
+    <XmlDataProvider x:Key="disasmData" XPath="/Stuff">
+        <x:XData>
+            <Stuff xmlns="">
+                <Line Offset="+000007" Addr="00/2007" Bytes="00 00 00 ..." Flags=""
+                      Attr="....." Label="R_2007" Opcode=".fill" Operand="64,$00"
+                      Comment="Read ROM, disable write" IsLongComment="False"/>
+                <Line IsLongComment="True"/>
+                <Line Comment="; This is where the fun" IsLongComment="True"/>
+                <Line Comment="; really starts!" IsLongComment="True"/>
+                <Line Offset="+000047" Addr="00/2047" Bytes="ad 82 c0" Flags="??mx???? E"
+                      Attr="....>" Label="Start" Opcode="lda" Operand="ROMIN_RO"
+                      Comment="Read ROM, disable write" IsLongComment="False"/>
+                <Line Offset="+00004a" Addr="00/204a" Bytes="8d 00 c0" Flags="??mx???? E"
+                      Attr="....." Label="" Opcode="sta" Operand="KBD"
+                      Comment="" IsLongComment="False"/>
+                <Line Offset="+00004d" Addr="00/204d" Bytes="8d 0c c0" Flags="??mx???? E"
+                      Attr="....." Label="" Opcode="sta" Operand="CLR80VID"
+                      Comment="switch to 40 columns" IsLongComment="False"/>
+                <Line Offset="+000050" Addr="00/2050" Bytes="8d 0e c0" Flags="??mx???? E"
+                      Attr="....." Label="" Opcode="sta" Operand="CLRALTCHAR"
+                      Comment="" IsLongComment="False"/>
+                <Line Offset="+000053" Addr="00/2053" Bytes="ad 10 c0" Flags="??mx???? E"
+                      Attr="....." Label="" Opcode="lda" Operand="KBDSTRB"
+                      Comment="" IsLongComment="False"/>
+                <Line Comment="NOTE: And so it begins" IsLongComment="True"/> <!-- TODO: color -->
+                <Line Offset="+000056" Addr="00/2056" Bytes="20 89 fe" Flags="??mx???? E"
+                      Attr="....." Label="" Opcode="jsr" Operand="SETKBD"
+                      Comment="" IsLongComment="False"/>
+            </Stuff>
+        </x:XData>
+    </XmlDataProvider>
+</ResourceDictionary>
