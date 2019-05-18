@@ -15,7 +15,7 @@
                 <Setter Property="HorizontalContentAlignment" Value="Left" />
             </Style>
 
-            <!-- common header list; uses XPath to get data from XData -->
+            <!-- common header list; uses XPath because our data comes from XData -->
             <GridView x:Key="gridColumns" x:Shared="false">
                 <GridViewColumn Header="Offset" DisplayMemberBinding="{Binding XPath=@Offset}"/>
                 <GridViewColumn Header="Addr" DisplayMemberBinding="{Binding XPath=@Addr}"/>
@@ -28,6 +28,7 @@
                 <GridViewColumn Header="Comment" DisplayMemberBinding="{Binding XPath=@Comment}"/>
             </GridView>
 
+            <!-- data source -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Data.xaml"/>
             </ResourceDictionary.MergedDictionaries>

@@ -4,13 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DisasmUiTest"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Simple List" Height="450" Width="800">
-    
-    <Grid>
+
+    <!-- option #1: simple panel, equivalent to other versions -->
+    <StackPanel Name="rootPanel">
         <ListView Name="codeListView"
                   FontFamily="{StaticResource generalMonoFont}"
                   View="{StaticResource gridColumns}"
                   ItemsSource="{Binding Source={StaticResource disasmData}, XPath=Line}"/>
-    </Grid>
+    </StackPanel>
+
+    <!-- option #2: panel with items, suitable for style-grabbing in the designer -->
+    <!--<StackPanel Name="rootPanel">
+        <ListView Name="codeListView"
+                  FontFamily="{StaticResource generalMonoFont}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Offset" DisplayMemberBinding="{Binding [0]}"/>
+                    <GridViewColumn Header="Addr" DisplayMemberBinding="{Binding [1]}"/>
+                    <GridViewColumn Header="Bytes" DisplayMemberBinding="{Binding [2]}"/>
+                </GridView>
+            </ListView.View>
+
+            <ListViewItem>
+                <x:Array Type="{x:Type sys:String}">
+                    <sys:String>+000000</sys:String>
+                    <sys:String>00/0000</sys:String>
+                    <sys:String>20 ed fd</sys:String>
+                </x:Array>
+            </ListViewItem>
+        </ListView>
+    </StackPanel>-->
 </Window>
