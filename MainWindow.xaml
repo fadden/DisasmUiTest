@@ -11,5 +11,7 @@
                 Width="200" Height="50" Margin="8" Click="SimpleList_Click"/>
         <Button Name="multiColTemplate" Content="Multi-Column Template"
                 Width="200" Height="50" Margin="8" Click="MultiColTemplate_Click"/>
+        <Button Name="rowPresenter" Content="GridViewRowPresenter"
+                Width="200" Height="50" Margin="8" Click="RowPresenter_Click"/>
     </StackPanel>
 </Window>

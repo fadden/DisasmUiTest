@@ -19,5 +19,10 @@ namespace DisasmUiTest {
             MultiColTemplateWindow win = new MultiColTemplateWindow();
             win.Show();
         }
+
+        private void RowPresenter_Click(object sender, RoutedEventArgs e) {
+            RowPresenterWindow win = new RowPresenterWindow();
+            win.Show();
+        }
     }
 }

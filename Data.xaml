@@ -9,7 +9,7 @@
                       Comment="Read ROM, disable write" IsLongComment="False"/>
                 <Line IsLongComment="True"/>
                 <Line Comment="; This is where the fun" IsLongComment="True"/>
-                <Line Comment="; really starts!" IsLongComment="True"/>
+                <Line Comment="; really starts - this comment is extra long now" IsLongComment="True"/>
                 <Line Offset="+000047" Addr="00/2047" Bytes="ad 82 c0" Flags="??mx???? E"
                       Attr="....>" Label="Start" Opcode="lda" Operand="ROMIN_RO"
                       Comment="Read ROM, disable write" IsLongComment="False"/>

@@ -23,7 +23,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
-                                <Grid>
+                                <Grid Background="{TemplateBinding Background}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[0].ActualWidth}"/>
                                         <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[1].ActualWidth}"/>
@@ -32,8 +32,7 @@
                                         <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[4].ActualWidth}"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="5" Padding="8,2" Text="{Binding XPath=@Comment}"
-                                                Background="{TemplateBinding Background}"/>
+                                    <TextBlock Grid.Column="5" Padding="8,2" Text="{Binding XPath=@Comment}"/>
                                 </Grid>
                             </ControlTemplate>
                         </Setter.Value>
