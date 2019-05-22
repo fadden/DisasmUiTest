@@ -8,14 +8,15 @@ using System.Windows.Controls.Primitives;
 
 namespace DisasmUiTest {
     /// <summary>
-    /// Code-behind for the GridViewRowPresenter variant.
+    /// Code-behind for the GridViewRowPresenter approach.
     /// </summary>
     /// <remarks>
     /// Most of this is an experiment with tracking the column width manually in the code-behind,
     /// and pushing changes out through a notification-enabled property.  This wasn't a great
-    /// plan, but the code remains.
+    /// plan, but I left the code in place for reference.
     /// </remarks>
-    public partial class RowPresenterWindow : Window, INotifyPropertyChanged {
+    public partial class RowPresenterWindow : Window /*, INotifyPropertyChanged*/ {
+#if false
         private int mWidth = 150;
         public int LongColZeroWidth {
             get { return mWidth; }
@@ -24,10 +25,12 @@ namespace DisasmUiTest {
                 NotifyPropertyChanged();
             }
         }
+#endif
 
         public RowPresenterWindow() {
             InitializeComponent();
 
+#if false
             this.DataContext = this;
 
             // Receive an event whenever the column header's size changes.
@@ -41,8 +44,10 @@ namespace DisasmUiTest {
 
             // TODO: sum up the widths of the last 4 columns and use it to set the width of
             //       column 1, so that the end of the Comment column also affects long comments
+#endif
         }
 
+#if false
         private void Thumb_DragDelta(object sender, DragDeltaEventArgs e) {
             Thumb senderAsThumb = (Thumb)e.OriginalSource;
             GridViewColumnHeader header = (GridViewColumnHeader)senderAsThumb.TemplatedParent;
@@ -63,7 +68,7 @@ namespace DisasmUiTest {
             LongColZeroWidth = (int)Math.Round(fwidth);
         }
 
-        #region Property change stuff
+        #region INotifyPropertyChanged stuff
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -75,6 +80,7 @@ namespace DisasmUiTest {
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion Property change stuff
+        #endregion INotifyPropertyChanged stuff
+#endif
     }
 }

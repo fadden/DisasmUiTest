@@ -12,7 +12,7 @@
         ListView tweaks from https://stackoverflow.com/a/4472061/294248 , with minor modifications
         (removed redundant(?) grid, use ActualWidth rather than Width, ...)
         -->
-        <Style x:Key="codeListViewItemStyle" TargetType="ListViewItem">
+        <Style x:Key="mctItemStyle" TargetType="ListViewItem">
             <!-- supposed to change highlight color... does nothing? -->
             <Style.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red"/>
@@ -24,12 +24,24 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type ListViewItem}">
                                 <Grid Background="{TemplateBinding Background}">
+                                    <!-- the original used Name=[nameOfListView], which would
+                                    prevent this from being used with more than one view -->
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[0].ActualWidth}"/>
-                                        <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[1].ActualWidth}"/>
-                                        <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[2].ActualWidth}"/>
-                                        <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[3].ActualWidth}"/>
-                                        <ColumnDefinition Width="{Binding ElementName=codeListView, Path=View.Columns[4].ActualWidth}"/>
+                                        <ColumnDefinition Width="{Binding
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                                            }, Path=View.Columns[0].ActualWidth}"/>
+                                        <ColumnDefinition Width="{Binding
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                                            }, Path=View.Columns[1].ActualWidth}"/>
+                                        <ColumnDefinition Width="{Binding
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                                            }, Path=View.Columns[2].ActualWidth}"/>
+                                        <ColumnDefinition Width="{Binding
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                                            }, Path=View.Columns[3].ActualWidth}"/>
+                                        <ColumnDefinition Width="{Binding
+                                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                                            }, Path=View.Columns[4].ActualWidth}"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="5" Padding="8,2" Text="{Binding XPath=@Comment}"/>
@@ -65,7 +77,7 @@
         <ListView Name="codeListView"
                   FontFamily="{StaticResource generalMonoFont}"
                   View="{StaticResource gridColumns}"
-                  ItemContainerStyle="{StaticResource codeListViewItemStyle}"
+                  ItemContainerStyle="{StaticResource mctItemStyle}"
                   ItemsSource="{Binding Source={StaticResource disasmData}, XPath=Line}"/>
     </Grid>
 </Window>

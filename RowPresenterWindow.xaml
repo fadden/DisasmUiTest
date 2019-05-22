@@ -9,13 +9,24 @@
 
     <Window.Resources>
         <!-- this seems to need to be a resource; defining inline as
-        GridViewRowPresenter.Columns resulted in a crash (Columns is null) -->
+        GridViewRowPresenter.Columns resulted in a crash (Columns is null)... perhaps there's
+        a converter invoked in one case but not the other? -->
         <GridViewColumnCollection x:Key="gvcc">
-            <GridViewColumn Width="{Binding ElementName=codeListView, Path=View.Columns[0].ActualWidth}"/>
-            <GridViewColumn Width="{Binding ElementName=codeListView, Path=View.Columns[1].ActualWidth}"/>
-            <GridViewColumn Width="{Binding ElementName=codeListView, Path=View.Columns[2].ActualWidth}"/>
-            <GridViewColumn Width="{Binding ElementName=codeListView, Path=View.Columns[3].ActualWidth}"/>
-            <GridViewColumn Width="{Binding ElementName=codeListView, Path=View.Columns[4].ActualWidth}"/>
+            <GridViewColumn Width="{Binding
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                }, Path=View.Columns[0].ActualWidth}"/>
+            <GridViewColumn Width="{Binding
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                }, Path=View.Columns[1].ActualWidth}"/>
+            <GridViewColumn Width="{Binding
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                }, Path=View.Columns[2].ActualWidth}"/>
+            <GridViewColumn Width="{Binding
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                }, Path=View.Columns[3].ActualWidth}"/>
+            <GridViewColumn Width="{Binding
+                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
+                }, Path=View.Columns[4].ActualWidth}"/>
             <!--<GridViewColumn Header="one" Width="{Binding Path=LongColZeroWidth}"/>-->
             <GridViewColumn Header="two" DisplayMemberBinding="{Binding XPath=@Comment}"/>
         </GridViewColumnCollection>
@@ -29,29 +40,29 @@
                 </GridViewRowPresenter>
             </StackPanel>
         </ControlTemplate>
+
+        <Style x:Key="gvrpItemStyle" TargetType="{x:Type ListViewItem}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding XPath=@IsLongComment}" Value="True">
+                    <Setter Property="Template" Value="{StaticResource longComment}"/>
+                </DataTrigger>
+
+                <!-- TODO: replace this with proper highlighting -->
+                <Trigger Property="IsSelected" Value="True">
+                    <Trigger.Setters>
+                        <Setter Property="Background" Value="LightGreen"/>
+                    </Trigger.Setters>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
         <ListView Name="codeListView"
                   FontFamily="{StaticResource generalMonoFont}"
                   View="{StaticResource gridColumns}"
-                  ItemsSource="{Binding Source={StaticResource disasmData}, XPath=Line}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="{x:Type ListViewItem}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding XPath=@IsLongComment}" Value="True">
-                            <Setter Property="Template" Value="{StaticResource longComment}"/>
-                        </DataTrigger>
+                  ItemContainerStyle="{StaticResource gvrpItemStyle}"
+                  ItemsSource="{Binding Source={StaticResource disasmData}, XPath=Line}"/>
 
-                        <!-- TODO: replace this with proper highlighting -->
-                        <Trigger Property="IsSelected" Value="True">
-                            <Trigger.Setters>
-                                <Setter Property="Background" Value="LightGreen"/>
-                            </Trigger.Setters>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
     </Grid>
 </Window>
