@@ -24,5 +24,10 @@ namespace DisasmUiTest {
             RowPresenterWindow win = new RowPresenterWindow();
             win.Show();
         }
+
+        private void FullyStyled_Click(object sender, RoutedEventArgs e) {
+            FullStyleWindow win = new FullStyleWindow();
+            win.Show();
+        }
     }
 }

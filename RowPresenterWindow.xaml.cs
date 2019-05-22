@@ -39,7 +39,7 @@ namespace DisasmUiTest {
                 new DragDeltaEventHandler(Thumb_DragDelta), true);
 
             // TODO: this doesn't work -- auto-sizing must be happening later -- need to catch
-            //       an event that happens late
+            //       an event that happens late (maybe this.LayoutUpdated?)
             ComputeColZeroWidth();
 
             // TODO: sum up the widths of the last 4 columns and use it to set the width of

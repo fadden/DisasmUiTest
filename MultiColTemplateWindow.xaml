@@ -51,7 +51,6 @@
                     </Setter>
                 </DataTrigger>
 
-                <!-- TODO: replace this with proper highlighting -->
                 <Trigger Property="IsSelected" Value="True">
                     <Trigger.Setters>
                         <Setter Property="Background" Value="LightGreen"/>
