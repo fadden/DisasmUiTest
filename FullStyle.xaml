@@ -24,7 +24,11 @@
     </LinearGradientBrush>
 
     <!-- Column set for the long-comment lines.  The first five columns will be empty, but
-    have their widths set to match those in the containing ListView. -->
+    have their widths set to match those in the containing ListView.
+
+    NOTE: you may need to set the DisplayMemberBinding on each item.  In some situations
+    you'll get a formatted object rather than empty strings.
+    -->
     <GridViewColumnCollection x:Key="gvcc">
         <GridViewColumn Width="{Binding
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
