@@ -1,0 +1,51 @@
+﻿<Window x:Class="DisasmUiTest.SelectionTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DisasmUiTest"
+        mc:Ignorable="d"
+        Title="Selection Test" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <ListView Name="testListView" Grid.Row="0"
+                  ItemsSource="{Binding DataSource}"
+                  VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Standard"
+                  SelectionChanged="TestListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Zero" DisplayMemberBinding="{Binding ColZero}" Width="50"/>
+                    <GridViewColumn Header="One" DisplayMemberBinding="{Binding ColOne}" Width="50"/>
+                    <GridViewColumn Header="Two" DisplayMemberBinding="{Binding ColTwo}" Width="50"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <StackPanel Name="info" Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Margin="4,2" Text="{Binding StringFormat=Selection count: {0},
+                                          Path=SelectionCount}"/>
+            <TextBlock Margin="2" Text="&#x2022;"/>
+            <TextBlock Margin="4,2" Text="{Binding StringFormat=IsVirtualizing: {0},
+                                          ElementName=testListView,
+                                          Path=(VirtualizingStackPanel.IsVirtualizing)}"/>
+            <TextBlock Margin="2" Text="&#x2022;"/>
+            <TextBlock Margin="4,2" Text="{Binding StringFormat=VirtualizationMode: {0},
+                                          ElementName=testListView,
+                                          Path=(VirtualizingStackPanel.VirtualizationMode)}"/>
+
+            <Button Name="selectEvens" Content="Select Even Rows" Margin="4,2"
+                    Click="SelectEvenRows_Click"/>
+            <CheckBox Name="fixIt" Content="Fix the Glitch" Margin="4,2"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -29,5 +29,10 @@ namespace DisasmUiTest {
             FullStyleWindow win = new FullStyleWindow();
             win.Show();
         }
+
+        private void SelectionTest_Click(object sender, RoutedEventArgs e) {
+            SelectionTestWindow win = new SelectionTestWindow();
+            win.Show();
+        }
     }
 }

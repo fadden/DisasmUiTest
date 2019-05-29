@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DisasmUiTest"
         mc:Ignorable="d"
-        Title="Disasm UI Test" Height="300" Width="400">
+        Title="Disasm UI Test" SizeToContent="WidthAndHeight">
     <StackPanel>
+        <TextBlock Text="ListView Styling:" HorizontalAlignment="Center" Margin="0,15,0,0"/>
         <Button Name="simpleList" Content="Simple List"
                 Width="200" Height="50" Margin="8" Click="SimpleList_Click"/>
         <Button Name="multiColTemplate" Content="Multi-Column Template"
@@ -15,5 +16,9 @@
                 Width="200" Height="50" Margin="8" Click="RowPresenter_Click"/>
         <Button Name="full" Content="Fully Styled"
                 Width="200" Height="50" Margin="8" Click="FullyStyled_Click"/>
+
+        <TextBlock Text="Other Tests:" HorizontalAlignment="Center" Margin="0,15,0,0"/>
+        <Button Name="selectionTest" Content="Selection Test"
+                Width="200" Height="50" Margin="8" Click="SelectionTest_Click"/>
     </StackPanel>
 </Window>

@@ -65,6 +65,9 @@
     <Compile Include="RowPresenterWindow.xaml.cs">
       <DependentUpon>RowPresenterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectionTestWindow.xaml.cs">
+      <DependentUpon>SelectionTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimpleListWindow.xaml.cs">
       <DependentUpon>SimpleListWindow.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RowPresenterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectionTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
