@@ -13,6 +13,12 @@ namespace DisasmUiTest {
     /// Based on https://stackoverflow.com/q/21940875/294248
     /// </summary>
     public partial class SelectionTestWindow : Window, INotifyPropertyChanged {
+        /// <summary>
+        /// Number of items to show.  Raise this to 100,000+ to evaluate performance rather
+        /// than correctness.
+        /// </summary>
+        private const int TEST_ITEM_COUNT = 1000;
+
         public class DataItem : INotifyPropertyChanged {
             public string ColZero { get; private set; }
             public string ColOne { get; private set; }
@@ -50,7 +56,6 @@ namespace DisasmUiTest {
             DataSource = new ObservableCollection<DataItem>();
 
             // put a bunch of stuff into the list
-            const int TEST_ITEM_COUNT = 1000;
             for (int i = 0; i < TEST_ITEM_COUNT; i++) {
                 DataItem newItem = new DataItem("z" + i, "o" + i, "t" + i);
                 DataSource.Add(newItem);

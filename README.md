@@ -93,6 +93,15 @@ programmatically selecting items.  Note that the selected item count at the
 bottom only reflects the number of items that are currently on screen, but
 increases as you scroll around.
 
+This approach starts to fail when the item count gets very large
+(hundreds of thousands of items).  If "fix the glitch" is checked, and
+you do a select-all operation, everything is fine until you try to scroll
+around.  Advancing a single page takes a noticeable amount of time.  If
+you un-select everything, the performance returns to normal.  My best
+guess is that the ListView is doing some sort of slow update to the
+SelectedItems list when it realizes that there are selected items that
+aren't in the list.
+
 
 ### License ###
 
