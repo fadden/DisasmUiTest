@@ -17,7 +17,7 @@ namespace DisasmUiTest {
         /// Number of items to show.  Raise this to 100,000+ to evaluate performance rather
         /// than correctness.
         /// </summary>
-        private const int TEST_ITEM_COUNT = 1000;
+        private const int TEST_ITEM_COUNT = (int) 1e3;
 
         public class DataItem : INotifyPropertyChanged {
             public string ColZero { get; private set; }

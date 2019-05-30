@@ -11,7 +11,7 @@ The central part of the UI looks like this:
 
 Key things to note:
 
- * The ListView has resizable columns and full-line multi-select.  It does
+ * The list has resizable columns and full-line multi-select.  It does
    not allow columns to be rearranged or sorted.
  * Most rows have 9 columns.  Some rows have full-line comments or "notes",
    which start in the Label column and extend to the end of the Comment
@@ -28,10 +28,19 @@ Key things to note:
    (e.g. changing a string to a byte dump, with one byte per line).  I need
    to save and restore the selection such that the same range of bytes is
    selected before and after.  This requires programatically setting the
-   selection, possibly on many thousands of items.
+   selection, possibly on many thousands of items.  (A full bank dump will
+   have up to 65536 lines.)
+ * Some changes can affect a large number of lines (e.g. adding or removing
+   a code entry point).  This requires alerting the UI that a number of
+   lines have changed.  The analysis code doesn't try to maintain
+   line-by-line diffs when doing a full code reanalysis, so such changes
+   are handled by simply marking all lines as changed.
+ * My goal is to have all operations finish in less than 100ms.  (This is
+   a common recommendation for interactivity.)
 
-The WinForms version used a ListView control with OwnerDraw.  Getting the
-item selection was so slow that I maintained a parallel data structure.
+The WinForms version used a ListView control with OwnerDraw.  The only
+significant performance issue I encountered was when getting the set of
+selected lines.  I dealt with that by maintaining a parallel data structure.
 
 
 ## ListView Style Tests ##
@@ -100,7 +109,19 @@ around.  Advancing a single page takes a noticeable amount of time.  If
 you un-select everything, the performance returns to normal.  My best
 guess is that the ListView is doing some sort of slow update to the
 SelectedItems list when it realizes that there are selected items that
-aren't in the list.
+aren't in the list.  To see this:
+
+ * In SelectionTestWindow.xaml.cs, change `TEST_ITEM_COUNT` from
+   1e3 (1000) to 1e5 (100000).
+ * Launch the program, click Selection Test.
+ * Check the "Fix the Glitch" checkbox.
+ * Click on the first line in the list (item 0).
+ * Type Ctrl+A to select all elements.
+ * Click in the scroll bar to scroll down a page, or just spin your
+   scroll wheel.
+ * You should notice that advancing a page at a time has very poor
+   performance.  If you click on a line to clear the selection, scrolling
+   becomes much faster.
 
 
 ### License ###

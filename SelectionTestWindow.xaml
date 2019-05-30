@@ -19,9 +19,9 @@
                   SelectionChanged="TestListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Zero" DisplayMemberBinding="{Binding ColZero}" Width="50"/>
-                    <GridViewColumn Header="One" DisplayMemberBinding="{Binding ColOne}" Width="50"/>
-                    <GridViewColumn Header="Two" DisplayMemberBinding="{Binding ColTwo}" Width="50"/>
+                    <GridViewColumn Header="Zero" DisplayMemberBinding="{Binding ColZero}" Width="60"/>
+                    <GridViewColumn Header="One" DisplayMemberBinding="{Binding ColOne}" Width="60"/>
+                    <GridViewColumn Header="Two" DisplayMemberBinding="{Binding ColTwo}" Width="60"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>
