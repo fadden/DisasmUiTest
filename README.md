@@ -123,6 +123,10 @@ aren't in the list.  To see this:
    performance.  If you click on a line to clear the selection, scrolling
    becomes much faster.
 
+It should be noted that if you select all elements in a very large list,
+changing the selection of individual elements with ctrl+click feels sluggish.
+This behavior seems to be present regardless of the approach used.
+
 
 ### License ###
 
