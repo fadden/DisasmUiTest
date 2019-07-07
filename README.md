@@ -61,11 +61,12 @@ style tests.  Clicking on a button creates an instance of that type of window.
    version, except that the "long comments" start in the 5th column and
    span multiple columns.
 
-The current solution doesn't cap the width of the long comment lines, so
-if the user shrinks the rightmost columns you'll still see the long comments.
-For the case of Notes, this is probably desirable.  I haven't figured out a
-way to do this, other than by catching thumb DragDeltaEvents and summing up
-column widths into a property in the code-behind.
+The current solution doesn't cap the width of the long comment lines, which
+can lead to undesirable behavior: a horizontal scroll bar appears that
+scrolls the GridView contents without also scrolling the GridView headers.
+A comment in the XAML explains how to address this (bind the width to a
+property whose value is kept equal to the sum of the widths of the last
+four columns), but I didn't implement it here.
 
 
 ## Other Tests ##

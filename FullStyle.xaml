@@ -45,7 +45,14 @@
         <GridViewColumn Width="{Binding
                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}
                 }, Path=View.Columns[4].ActualWidth}"/>
-        <GridViewColumn Header="two" DisplayMemberBinding="{Binding XPath=@Comment}"/>
+        <!-- The width of this column needs to be set to the some of the ActualWidths of
+        columns 5/6/7/8.  There's no way to do this in XAML, so we need to bind Width to a
+        property that is updated in the code-behind.  We have to update it every time a column
+        width changes, which requires adding events to dependency properties on the columns.
+        This is a bit complicated, so I'm not doing it here.  For an example, see how the
+        UpdateLongCommentWidth method is used:
+        https://github.com/fadden/6502bench/blob/779566c2367babb360b71f349ec2aad0b20b54c9/SourceGenWPF/WpfGui/MainWindow.xaml.cs#L373-->
+        <GridViewColumn Header="multi-col stuff" DisplayMemberBinding="{Binding XPath=@Comment}"/>
     </GridViewColumnCollection>
 
     <!-- Template for long lines.  This is a modification of the default style, with
