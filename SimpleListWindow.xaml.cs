@@ -13,10 +13,9 @@ namespace DisasmUiTest {
         public SimpleListWindow() {
             InitializeComponent();
 
-#if false
+#if true
             // Add a button that captures the style.  Probably easier to just use the approach
-            // from https://stackoverflow.com/a/38875063/294248 (especially since I can't
-            // figure out how to extract a ListViewItem's style).
+            // from https://stackoverflow.com/a/38875063/294248.
             Button bt = new Button();
             bt.Name = "CaptureStyle";
             bt.Content = "Capture Style";
@@ -26,16 +25,24 @@ namespace DisasmUiTest {
         }
 
         private void CaptureStyle_Click(object obj, EventArgs e) {
-            string outFile = @"C:\Src\template.xaml";
-            string xaml;
+            try {
+                string outFile = @"C:\Src\template.xaml";
+                string xaml;
 
-            xaml = XamlWriter.Save(codeListView.Template); // template for ListView obj
+                xaml = XamlWriter.Save(codeListView.Template); // template for ListView obj
 
-            //xaml = XamlWriter.Save(codeListView.ItemTemplate); // null
-            //xaml = XamlWriter.Save(codeListView.ItemContainerStyle); // null
+                //xaml = XamlWriter.Save(codeListView.ItemTemplate); // null
+                //xaml = XamlWriter.Save(codeListView.ItemContainerStyle); // null
 
-            File.WriteAllText(outFile, xaml);
-            Debug.WriteLine("Written to '" + outFile + "'");
+                ListViewItem lvi = (ListViewItem)codeListView.ItemContainerGenerator.ContainerFromItem(
+                    codeListView.Items[0]);
+                xaml += XamlWriter.Save(lvi.Template); // template for ListViewItem obj
+
+                File.WriteAllText(outFile, xaml);
+                Debug.WriteLine("Written to '" + outFile + "'");
+            } catch (Exception ex) {
+                MessageBox.Show("FAILED: " + ex.Message);
+            }
         }
     }
 }
